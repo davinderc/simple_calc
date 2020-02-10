@@ -44,19 +44,23 @@ def test_add_nine():
     calculator = Calc()
     assert calculator.add(operand1, operand2) == sum_result
 
-def _test_ten_add():
+def test_ten_add():
     operand1 = 10
     operand2 = 4
     sum_result = 14
     calculator = Calc()
-    assert calculator.add(operand1, operand2) == sum_result
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.add(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand1'" in str(e.value)
 
-def _test_add_ten():
+def test_add_ten():
     operand1 = 3
     operand2 = 10
     sum_result = 13
     calculator = Calc()
-    assert calculator.add(operand1, operand2) == sum_result
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.add(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand2'" in str(e.value)
 
 def test_subtract_zero():
     operand1 = 3
@@ -72,6 +76,24 @@ def test_zero_subtract():
     calculator = Calc()
     assert calculator.subtract(operand1, operand2) == difference
 
+def test_neg_one_subtract():
+    operand1 = -1
+    operand2 = 4
+    sum_result = -5
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand1'" in str(e.value)
+
+def test_subtract_neg_one():
+    operand1 = 10
+    operand2 = -1
+    sum_result = 11
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand2'" in str(e.value)
+
 def test_nine_subtract():
     operand1 = 9
     operand2 = 3
@@ -86,12 +108,14 @@ def test_subtract_nine():
     calculator = Calc()
     assert calculator.subtract(operand1, operand2) == difference
 
-def _test_ten_subtract():
+def test_ten_subtract():
     operand1 = 10
     operand2 = 4
     sum_result = 6
     calculator = Calc()
-    assert calculator.subtract(operand1, operand2) == sum_result
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand1'" in str(e.value)
 
 def test_subtract_ten():
     operand1 = 3
