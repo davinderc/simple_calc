@@ -166,12 +166,6 @@ def test_upper_corner_subtract():
     assert "Breach for argument 'operand1'" in str(e.value)
 
 
-test_lower_corner_add()
-test_lower_corner_subtract()
-test_upper_corner_add()
-test_upper_corner_subtract()
-
-
 ''' 
 Test cases
     Normal addition
