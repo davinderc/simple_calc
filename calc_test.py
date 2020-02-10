@@ -1,4 +1,6 @@
 from simple_calc import *
+from contracts import ContractNotRespected
+import pytest
 
 def test_sum():
     operand1 = 3
@@ -91,12 +93,14 @@ def _test_ten_subtract():
     calculator = Calc()
     assert calculator.subtract(operand1, operand2) == sum_result
 
-def _test_subtract_ten():
+def test_subtract_ten():
     operand1 = 3
     operand2 = 10
     sum_result = -7
     calculator = Calc()
-    assert calculator.subtract(operand1, operand2) == sum_result
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand2'" in str(e.value)
 
 ''' 
 Test cases
