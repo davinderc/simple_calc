@@ -1,20 +1,59 @@
 language: python
 jobs:
   include:
-    - name: 'Python 2.7 + 3.4-3.9 + nightly on Xenial Linux'
-      python:
-        - 2.7
-        - 3.4
-        - 3.5
-        - 3.6
-        - 3.7
-        - 3.8
-        - 3.9
-        - nightly
+    - name: 'Python 2.7 on Xenial Linux'
+        python:
+          - 2.7
+    - name: 'Python 3.4 on Xenial Linux'
+        python:
+          - 3.4
+    - name: 'Python 3.5 on Xenial Linux'
+        python:
+          - 3.5
+    - name: 'Python 3.6 on Xenial Linux'
+        python:
+          - 3.6
+    - name: 'Python 3.7 on Xenial Linux'
+        python:
+          - 3.7
+    - name: 'Python 3.8 on Xenial Linux'
+        python:
+          - 3.8
+    - name: 'Python 3.9 on Xenial Linux'
+        python:
+          - 3.9
+    - name: 'Python nightly build on Xenial Linux'
+        python:
+          - nightly
+
     - name: 'Python 3.7.4 on macOS'
       os: osx
-      osx_image: xcode11.2
+      language: generic
+      env: PYTHON=3.7.4
+    - name: 'Python 3.4.4 on macOS'
+      os: osx
+      language: generic
+      env: PYTHON=3.4.4
+    - name: 'Python 3.5.1 on macOS'
+      os: osx
+      language: generic
+      env: PYTHON=3.5.1
+
+    - name: 'Python 3.6.10 on Windows'
+      os: windows
       language: shell
+      before_install:
+        - choco install python --version 3.6.10
+        - python -m pip install --upgrade pip
+      env: PATH=/c/Python36:/c/Python36/Scripts:$PATH
+    - name: 'Python 3.7.6 on Windows'
+      os: windows
+      language: shell
+      before_install:
+        - choco install python --version 3.7.6
+        - python -m pip install --upgrade pip
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+
     - name: 'Python 3.8.0 on Windows'
       os: windows
       language: shell
@@ -22,6 +61,7 @@ jobs:
         - choco install python --version 3.8.0
         - python -m pip install --upgrade pip
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+
 install:
   - pip install -r requirements.txt
 # command to run tests
