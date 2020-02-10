@@ -79,19 +79,19 @@ def test_zero_subtract():
 def test_neg_one_subtract():
     operand1 = -1
     operand2 = 4
-    sum_result = -5
+    difference = -5
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
-        assert calculator.subtract(operand1, operand2) == sum_result
+        assert calculator.subtract(operand1, operand2) == difference
     assert "Breach for argument 'operand1'" in str(e.value)
 
 def test_subtract_neg_one():
-    operand1 = 10
+    operand1 = 9
     operand2 = -1
-    sum_result = 11
+    difference = 10
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
-        assert calculator.subtract(operand1, operand2) == sum_result
+        assert calculator.subtract(operand1, operand2) == difference
     assert "Breach for argument 'operand2'" in str(e.value)
 
 def test_nine_subtract():
@@ -111,20 +111,66 @@ def test_subtract_nine():
 def test_ten_subtract():
     operand1 = 10
     operand2 = 4
-    sum_result = 6
+    difference = 6
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
-        assert calculator.subtract(operand1, operand2) == sum_result
+        assert calculator.subtract(operand1, operand2) == difference
     assert "Breach for argument 'operand1'" in str(e.value)
 
 def test_subtract_ten():
     operand1 = 3
     operand2 = 10
-    sum_result = -7
+    difference = -7
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
-        assert calculator.subtract(operand1, operand2) == sum_result
+        assert calculator.subtract(operand1, operand2) == difference
     assert "Breach for argument 'operand2'" in str(e.value)
+
+def test_lower_corner_add():
+    operand1 = -1
+    operand2 = -1
+    sum_result = -2
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.add(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand1'" in str(e.value)
+
+def test_lower_corner_subtract():
+    operand1 = -1
+    operand2 = -1
+    difference = 0
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == difference
+    print(e.value)
+    assert "Breach for argument 'operand1'" in str(e.value)
+
+def test_upper_corner_add():
+    operand1 = 10
+    operand2 = 10
+    sum_result = 20
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.add(operand1, operand2) == sum_result
+    print(e.value)
+    assert "Breach for argument 'operand1'" in str(e.value)
+
+def test_upper_corner_subtract():
+    operand1 = 10
+    operand2 = 10
+    difference = 0
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == difference
+    print(e.value)
+    assert "Breach for argument 'operand1'" in str(e.value)
+
+
+test_lower_corner_add()
+test_lower_corner_subtract()
+test_upper_corner_add()
+test_upper_corner_subtract()
+
 
 ''' 
 Test cases
