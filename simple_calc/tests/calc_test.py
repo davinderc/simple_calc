@@ -1,4 +1,4 @@
-from simple_calc import *
+from simple_calc import Calc
 from contracts import ContractNotRespected
 import pytest
 
