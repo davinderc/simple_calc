@@ -1,3 +1,4 @@
---extra-index-url https://test.pypi.org/
+--extra-index-url https://test.pypi.org/simple/
 pytest
 PyContracts
+simple_calc_davinderc
