@@ -57,6 +57,6 @@ jobs:
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r -v requirements.txt
 # command to run tests
 script: pytest -v
