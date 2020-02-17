@@ -1,5 +1,17 @@
-from simple_calc import Calc
+
+'''
+Test cases for simple_calc
+    Normal addition
+    Normal subtraction
+    Lower edge add (0 and -1)
+    Upper edge add (9 and 10)
+    Lower edge subtract (0 and -1)
+    Upper edge subtract (9 and 10)
+'''
+
+from simple_calc.simple_calc import Calc
 from contracts import ContractNotRespected
+import sys
 import pytest
 
 def test_sum():
@@ -142,7 +154,6 @@ def test_lower_corner_subtract():
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
         assert calculator.subtract(operand1, operand2) == difference
-    print(e.value)
     assert "Breach for argument 'operand1'" in str(e.value)
 
 def test_upper_corner_add():
@@ -152,7 +163,6 @@ def test_upper_corner_add():
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
         assert calculator.add(operand1, operand2) == sum_result
-    print(e.value)
     assert "Breach for argument 'operand1'" in str(e.value)
 
 def test_upper_corner_subtract():
@@ -162,16 +172,23 @@ def test_upper_corner_subtract():
     calculator = Calc()
     with pytest.raises(ContractNotRespected) as e:
         assert calculator.subtract(operand1, operand2) == difference
-    print(e.value)
     assert "Breach for argument 'operand1'" in str(e.value)
 
+def test_max_int():
+    operand1 = sys.maxsize
+    operand2 = 1
+    sum_result = sys.maxsize + 1
+    calculator = Calc()
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.add(operand1, operand2) == sum_result
+    assert "Breach for argument 'operand1'" in str(e.value)
 
-''' 
-Test cases
-    Normal addition
-    Normal subtraction
-    Lower edge add (0 and -1)
-    Upper edge add (9 and 10)
-    Lower edge subtract (0 and -1)
-    Upper edge subtract (9 and 10)
-'''
+def test_min_int():
+    operand1 = -sys.maxsize - 1
+    operand2 = 1
+    difference_result = -sys.maxsize - 2
+    calculator = Calc()
+    print(difference_result)
+    with pytest.raises(ContractNotRespected) as e:
+        assert calculator.subtract(operand1, operand2) == difference_result
+    assert "Breach for argument 'operand1'" in str(e.value)

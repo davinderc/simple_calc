@@ -2,7 +2,7 @@ from contracts import contract
 
 class Calc():
     def __init__(self):
-        result = 0
+        self.result = None
     @contract(operand1='int,>=0,<10', operand2='int,>=0,<10', returns='int')
     def add(self, operand1, operand2):
         """
@@ -11,7 +11,8 @@ class Calc():
         :param operand2:
         :return:
         """
-        return operand1 + operand2
+        self.result = operand1 + operand2
+        return self.result
 
     @contract(operand1='int,>=0,<10', operand2='int,>=0,<10', returns='int')
     def subtract(self, operand1, operand2):
@@ -21,4 +22,5 @@ class Calc():
         :param operand2:
         :return:
         """
-        return operand1 - operand2
+        self.result = operand1 - operand2
+        return self.result
