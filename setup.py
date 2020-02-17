@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Davinder C",
     author_email="davinder.sc1@gmail.com",
-    description="A simple calculator to developed to practice test-driven development.",
+    description="A simple calculator developed to practice test-driven development.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='MIT',
