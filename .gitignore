@@ -12,3 +12,9 @@
 
 # Build folder
 /build/
+
+# Egg files?
+.eggs/
+
+# Testing files?
+.pytest_cache/

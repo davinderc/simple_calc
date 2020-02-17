@@ -22,6 +22,5 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     test_suite= 'simple_calc.tests',
-    setup_requires=['pytest'],
-    tests_require=['pytest', 'contracts']
+    tests_require=['pytest']
 )
